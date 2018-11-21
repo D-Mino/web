@@ -39,7 +39,7 @@ class Product_M extends CI_Model {
     |--------------------------------------------------------------------------
     */
 
-    public function insert_entry($data)
+    public function insert($data)
     {
         $this->db->insert('products', $data);
         return $this->db->insert_id();
@@ -51,7 +51,7 @@ class Product_M extends CI_Model {
     |--------------------------------------------------------------------------
     */
 
-    public function update_entry($ids, $data)
+    public function update($ids, $data)
     {
         $this->db->where_in('id', $ids);
         $this->db->update('products', $data);
@@ -69,7 +69,7 @@ class Product_M extends CI_Model {
     |--------------------------------------------------------------------------
     */
 
-    public function delete_entry($id)
+    public function delete($id)
     {
         $this->delete_deduction($id);
         $this->db->where_in('id', $id);

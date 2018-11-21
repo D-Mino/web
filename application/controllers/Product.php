@@ -36,8 +36,8 @@ class Product extends Token {
     {
         $response = [];
         $data = $this->post();
-        $data['admin_id'] = $this->token->id;
-        $response['success'] = entry_post($data);
+        $id = $this->model->insert($data);
+        $response['success'] = true;
         $this->response($response);
     }
 
