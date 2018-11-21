@@ -36,7 +36,7 @@ class Product extends Token {
     {
         $response = [];
         $data = $this->post();
-        $id = $this->model->insert($data);
+        $this->model->insert($data);
         $response['success'] = true;
         $this->response($response);
     }
@@ -45,7 +45,9 @@ class Product extends Token {
     {
         $response = [];
         $data = $this->put();
-        $response['success'] = entry_put($data);
+        $id = $this->get('id');
+        $this->model->update($id, $data);
+        $response['success'] = true;
         $this->response($response);
 
     }
@@ -53,8 +55,8 @@ class Product extends Token {
     public function index_delete()
     {
         $response = [];
-        $id = explode(',', $this->input->get('id'));
-        $response['success'] = $this->model->delete_entry($id);
+        $id = $this->get('id');
+        $response['success'] = $this->model->delete($id);
         $this->response($response);
     }
 }

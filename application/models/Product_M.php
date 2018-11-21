@@ -55,11 +55,6 @@ class Product_M extends CI_Model {
     {
         $this->db->where_in('id', $ids);
         $this->db->update('products', $data);
-
-        // Sync payslip
-        foreach ($ids as $id) {
-            $this->sync_main($id);
-        }
         return true;
     }
 
@@ -71,7 +66,6 @@ class Product_M extends CI_Model {
 
     public function delete($id)
     {
-        $this->delete_deduction($id);
         $this->db->where_in('id', $id);
         return $this->db->delete('products');
     }
